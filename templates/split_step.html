@@ -32,7 +32,13 @@
             font-size: 18px;
             margin-top: 15px;
         }
-
+.drill-image {
+    width: 100%;
+    max-width: 900px;
+    border-radius: 12px;
+    margin-top: 15px;
+    display: block;
+}
         ul {
             line-height: 1.8;
         }
@@ -88,11 +94,10 @@
             <li>Players perform split step before reacting to feed or visual cue</li>
         </ul>
 
-        <div class="image-placeholder">
-
-            PLAN VIEW LAYOUT IMAGE PLACEHOLDER
-
-        </div>
+        <img 
+    src="{{ url_for('static', filename='images/split_step_layout.png') }}"
+    alt="Split Step Layout"
+    class="drill-image">
 
     </div>
 
@@ -184,11 +189,11 @@
 
         <h2>Drill In Action</h2>
 
-        <div class="image-placeholder">
-
-            ACTION IMAGE / VIDEO PLACEHOLDER
-
-        </div>
+        <img 
+    src="{{ url_for('static', filename='images/split_step_action.png') }}"
+    alt="Split Step Drill In Action"
+    class="drill-image"
+>
 
     </div>
 
