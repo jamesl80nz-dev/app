@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tennis Drills</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        .filters input,
+        .filters select,
+        .filters button {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .drill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            width: 90%;
+            margin: auto;
+        }
+
+        .drill-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tag {
+            display: inline-block;
+            background: #4285F4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 3px;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Tennis Drills Library</h1>
+
+    <div class="filters">
+
+        <form method="GET">
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search drills..."
+                value="{{ search }}"
+            >
+
+            <select name="skill_level">
+
+                <option value="">All Skill Levels</option>
+
+                {% for level in skill_levels %}
+
+                    <option
+                        value="{{ level[0] }}"
+                        {% if selected_skill_level == level[0] %}selected{% endif %}
+                    >
+                        {{ level[0] }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <select name="focus_area">
+
+                <option value="">All Focus Areas</option>
+
+                {% for area in focus_areas %}
+
+                    <option
+                        value="{{ area[0] }}"
+                        {% if selected_focus_area == area[0] %}selected{% endif %}
+                    >
+                        {{ area[0] }}
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+            <button type="submit">Search</button>
+
+        </form>
+
+    </div>
+
+    <div class="drill-grid">
+
+        {% for drill in drills %}
+
+        <div class="drill-card">
+
+            <h2>{{ drill[1] }}</h2>
+
+            <p>
+                <strong>Skill:</strong>
+                {{ drill[2] }}
+            </p>
+
+            <p>
+                <strong>Focus:</strong>
+                {{ drill[3] }}
+            </p>
+
+            <p>{{ drill[5] }}</p>
+
+            <div>
+
+                {% for tag in drill[8].split(',') %}
+
+                    <span class="tag">{{ tag.strip() }}</span>
+
+                {% endfor %}
+
+            </div>
+
+            <br>
+
+            <a href="/drill/{{ drill[0] }}">View Drill</a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

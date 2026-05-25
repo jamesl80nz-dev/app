@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <h1>Welcome, {{ user.name }}</h1>
+    <p>You are logged in as {{ user.email }}</p>
+
+    <div>
+        <a href="/drills">Drill Library</a>
+        <a href="#">Search Tools</a>
+        <a href="#">Build your Lesson</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <br>
+
+    <a href="/logout">Logout</a>
+</body>
+</html>
