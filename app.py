@@ -50,6 +50,16 @@ def logout():
     session.clear()
     return redirect("/")
 
+@app.route('/split-step')
+def split_step():
+
+    user = session.get("user")
+
+    if not user:
+        return redirect("/")
+
+    return render_template("split_step.html")
+
 @app.route("/drills")
 def drills():
     user = session.get("user")
